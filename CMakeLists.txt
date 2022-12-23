@@ -8,13 +8,15 @@ file(GLOB_RECURSE PROJ_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "src/lib/*.c
 
 add_subdirectory(./vendor/glfw)
 add_subdirectory(./vendor/glad)
+add_subdirectory(./vendor/vulkan)
 
 if(WIN32)
-add_executable(HelloOpenGL WIN32 ${PROJ_SOURCES})
+add_executable(HelloOpenGL WIN32 ${PROJ_SOURCES} ${PROJ_HEADERS})
 add_compile_definitions(WIN_OPEN_GL)
 else()
-add_executable(HelloOpenGL ${PROJ_SOURCES})
+add_executable(HelloOpenGL ${PROJ_SOURCES} ${PROJ_HEADERS})
 add_compile_definitions(LIN_OPEN_GL)
 endif()
+add_compile_definitions(GLFW_INCLUDE_NONE)
 target_include_directories(HelloOpenGL PRIVATE "./src/include" "./vendor/glfw/include" "./vendor/glad/include")
-target_link_libraries(HelloOpenGL PRIVATE glfw glad)
+target_link_libraries(HelloOpenGL PRIVATE glfw glad vulkan_wrapper)

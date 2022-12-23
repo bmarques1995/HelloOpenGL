@@ -4,3 +4,6 @@
 [submodule "vendor/glad"]
 	path = vendor/glad
 	url = https://github.com/bmarques1995/glad.git
+[submodule "vendor/vulkan"]
+	path = vendor/vulkan
+	url = https://github.com/bmarques1995/vulkan_wrapper.git

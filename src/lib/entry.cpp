@@ -1,7 +1,9 @@
 #include <iostream>
 
-#include <glad/gl_safe_include.h>
-#include <glfw/glfw3.h>
+#include "interface/Window.hpp"
+#include "interface/GraphicsContext.hpp"
+#include "window/glfw/GLFWWindow.hpp"
+#include "graphics/gl4/GL4Context.hpp"
 
 int program();
 
@@ -28,39 +30,18 @@ int main()
 
 int program()
 {
-    GLFWwindow* window;
+    APILearning::Window* window = new APILearning::GLFWWindow();
+    APILearning::GraphicsContext* context = new APILearning::GL4Context(std::any_cast<GLADloadfunc>(window->GetNativeWindow()));
+    context->SetClearColor(.7f, .3f, .9f, 1.0f);
 
-    /* Initialize the library */
-    if (!glfwInit())
-        return -1;
-
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window)
+    while (!window->ShouldClose())
     {
-        glfwTerminate();
-        return -1;
+        window->Update();
+        context->Update();
     }
 
-    /* Make the window's context current */
-    glfwMakeContextCurrent(window);
-
-    gladLoadGL(glfwGetProcAddress);
-
-    /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window))
-    {
-        glClearColor(.7, .3, .9, 1.0);
-
-        glClear(GL_COLOR_BUFFER_BIT);
-        /* Swap front and back buffers */
-        glfwSwapBuffers(window);
-
-        /* Poll for and process events */
-        glfwPollEvents();
-    }
-
-    glfwTerminate();
+    delete context;
+    delete window;
     return 0;
 }
 
