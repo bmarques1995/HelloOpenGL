@@ -7,6 +7,7 @@ file(GLOB_RECURSE PROJ_HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "src/include
 file(GLOB_RECURSE PROJ_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "src/lib/*.cpp")
 
 add_subdirectory(./vendor/glfw)
+add_subdirectory(./vendor/glad)
 
 if(WIN32)
 add_executable(HelloOpenGL WIN32 ${PROJ_SOURCES})
@@ -15,5 +16,5 @@ else()
 add_executable(HelloOpenGL ${PROJ_SOURCES})
 add_compile_definitions(LIN_OPEN_GL)
 endif()
-target_include_directories(HelloOpenGL PRIVATE "./src/include" "./vendor/glfw/include")
-target_link_libraries(HelloOpenGL PRIVATE glfw)
+target_include_directories(HelloOpenGL PRIVATE "./src/include" "./vendor/glfw/include" "./vendor/glad/include")
+target_link_libraries(HelloOpenGL PRIVATE glfw glad)
