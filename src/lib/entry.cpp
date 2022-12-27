@@ -5,6 +5,8 @@
 #include "window/glfw/GLFWWindow.hpp"
 #include "graphics/gl4/GL4Context.hpp"
 
+#include "VulkanWrapperLog.hpp"
+
 int program();
 
 #ifdef WIN_OPEN_GL
@@ -30,6 +32,7 @@ int main()
 
 int program()
 {
+    auto recover = VulkanWrapper::GetNumberOfExtensions();
     APILearning::Window* window = new APILearning::GLFWWindow();
     APILearning::GraphicsContext* context = new APILearning::GL4Context(std::any_cast<GLADloadfunc>(window->GetNativeWindow()));
     context->SetClearColor(.7f, .3f, .9f, 1.0f);
