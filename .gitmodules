@@ -4,4 +4,3 @@
 [submodule "vendor/glad"]
 	path = vendor/glad
 	url = https://github.com/bmarques1995/glad.git
-
