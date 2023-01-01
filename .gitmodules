@@ -4,3 +4,13 @@
 [submodule "vendor/glad"]
 	path = vendor/glad
 	url = https://github.com/bmarques1995/glad.git
+[submodule "vendor/vulkan/vulkan_headers"]
+	path = vendor/vulkan/vulkan_headers
+	url = https://github.com/KhronosGroup/Vulkan-Headers.git
+[submodule "vendor/vulkan/vulkan_loader"]
+	path = vendor/vulkan/vulkan_loader
+	url = https://github.com/KhronosGroup/Vulkan-Loader.git
+[submodule "vendor/imgui/imgui"]
+	path = vendor/imgui/imgui
+	url = https://github.com/ocornut/imgui.git
+	branch = docking
